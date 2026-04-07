@@ -3,122 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUMON'S STRATEGY - AI TRADER</title>
+    <title>SUMON'S STRATEGY AI</title>
     <style>
-        body { background-color: transparent; font-family: sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; color: white; overflow: hidden; }
-        
-        /* আপনার দেওয়া লোগো স্টাইল */
-        .logo-container { width: 120px; height: 120px; margin-bottom: 15px; border-radius: 50%; box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
-        .logo-img { width: 100%; height: 100%; border-radius: 50%; }
-
-        /* লগইন বক্স ডিজাইন */
-        #login-screen { background: rgba(10, 10, 20, 0.95); padding: 25px; border-radius: 20px; text-align: center; width: 280px; border: 2px solid #d4af37; box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); }
-        .brand-header { color: #d4af37; font-weight: bold; font-size: 16px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
-        .alert-top { color: #ff4757; font-weight: bold; font-size: 10px; margin-top: 5px; text-transform: uppercase; }
-        
-        input { width: 100%; padding: 10px; margin: 8px 0; border-radius: 5px; border: 1px solid #d4af37; background: #0f0f1e; color: white; box-sizing: border-box; }
-        .btn-prime { width: 100%; padding: 12px; border-radius: 8px; border: none; background: #d4af37; color: black; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .btn-prime:hover { background: #f1c40f; }
-
-        /* মেইন ইন্টারফেস (গোল AI) */
+        body { background-color: #000; font-family: sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; color: white; overflow: hidden; }
+        .logo-box { width: 90px; height: 90px; margin-bottom: 10px; border: 2px solid #d4af37; border-radius: 50%; padding: 3px; box-shadow: 0 0 15px #d4af37; }
+        .logo-box img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        #login-screen { background: rgba(20, 20, 30, 0.95); padding: 20px; border-radius: 20px; text-align: center; width: 280px; border: 1.5px solid #d4af37; box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+        .brand-name { color: #d4af37; font-weight: bold; font-size: 16px; margin-bottom: 5px; text-transform: uppercase; }
+        input, select { width: 100%; padding: 10px; margin: 6px 0; border-radius: 8px; border: 1px solid #d4af37; background: #050510; color: white; box-sizing: border-box; font-size: 13px; }
+        .main-btn { width: 100%; padding: 12px; border-radius: 8px; border: none; background: linear-gradient(45deg, #d4af37, #f1c40f); color: black; font-weight: bold; cursor: pointer; margin-top: 10px; }
         #main-app { display: none; text-align: center; }
-        .ai-sphere-container { 
-            width: 180px; height: 260px; background: rgba(10, 10, 25, 0.98); 
-            border-radius: 30px; padding: 10px; border: 2px solid #d4af37; 
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5); 
-        }
-        
-        /* বেগুনি থেকে গোল্ডেন এনিমেশন */
-        .ai-circle { 
-            width: 110px; height: 110px; border-radius: 50%; 
-            background: radial-gradient(circle, #f1c40f, #d4af37, #b8860b); 
-            margin: 15px auto; position: relative; 
-            box-shadow: 0 0 35px #d4af37; 
-            animation: pulse-glow 2.5s infinite ease-in-out; 
-        }
-        
-        @keyframes pulse-glow {
-            0% { transform: scale(1); box-shadow: 0 0 20px #d4af37; }
-            50% { transform: scale(1.08); box-shadow: 0 0 50px #f1c40f; }
-            100% { transform: scale(1); box-shadow: 0 0 20px #d4af37; }
-        }
-
-        .verified-tag { font-size: 10px; color: #d4af37; margin-bottom: 5px; }
-        .market-tag { font-size: 13px; font-weight: bold; color: #f1c40f; margin-top: 5px; }
+        .ai-sphere { width: 110px; height: 110px; border-radius: 50%; background: radial-gradient(circle, #f1c40f, #d4af37, #000); margin: 15px auto; box-shadow: 0 0 30px #d4af37; animation: glow 2s infinite ease-in-out; cursor: pointer; }
+        @keyframes glow { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .mic-on { border: 3px solid #ff4757 !important; }
     </style>
 </head>
 <body>
 
     <div id="login-screen">
-        <div class="logo-container">
-            <img src="your_logo.png" alt="Sumon Logo" class="logo-img">
-        </div>
-        <div class="brand-header">SUMON'S STRATEGY</div>
-        <div class="alert-top">ONLY NEW ACCOUNT ACCESS</div>
-        <input type="text" id="username" placeholder="ইউজার নাম">
-        <input type="number" id="trader-id" placeholder="ট্রেডার আইডি (নাম্বার)">
-        <input type="password" id="user-pass" placeholder="পাসওয়ার্ড">
-        <button class="btn-prime" onclick="handleLogin()">START JOURNEY</button>
+        <div class="logo-box"><img src="1000008884.jpg" alt="Logo"></div>
+        <div class="brand-name">SUMON'S STRATEGY AI</div>
+        <input type="text" id="uname" placeholder="ইউজার নাম / Name">
+        <input type="number" id="tid" placeholder="ট্রেডার আইডি / Trader ID">
+        <select id="lang-select">
+            <option value="bn-BD">Bengali (বাংলা)</option>
+            <option value="en-US">English (US)</option>
+            <option value="hi-IN">Hindi (हिन्दी)</option>
+        </select>
+        <button class="main-btn" onclick="start()">LOGIN & START</button>
     </div>
 
     <div id="main-app">
-        <div class="ai-sphere-container">
-            <div class="verified-tag">By SUMON</div>
-            <div class="ai-circle"></div>
-            <div class="market-tag" id="display-market">Select Market</div>
+        <div style="background: rgba(15, 15, 25, 0.9); border-radius: 30px; padding: 15px; border: 2px solid #d4af37; width: 220px;">
+            <div style="font-size: 11px; color: #d4af37; font-weight: bold;">VERIFIED BY SUMON</div>
+            <div class="ai-sphere" id="ai-sphere" onclick="toggleMic()"></div>
+            <div id="m-display" style="color:#f1c40f; font-weight:bold; font-size: 14px;">Market Ready</div>
+            <p id="mic-status" style="font-size: 10px; color: #aaa;">Tap AI to Speak</p>
             
-            <input type="text" id="market-input" placeholder="মার্কেট নাম" style="font-size: 11px; padding: 5px; width: 80%;">
-            <button onclick="saveMarket()" style="background: #2ed573; border: none; font-size: 10px; color: black; cursor: pointer;">SAVE</button>
-            
-            <select id="timer-select" style="font-size: 11px; padding: 5px; width: 90%;">
-                <option value="1">1 Minute</option>
-                <option value="3">3 Minutes</option>
-                <option value="5">5 Minutes</option>
-            </select>
-            
-            <button class="btn-prime" style="margin-top: 5px; font-size: 11px; border-radius: 5px;" onclick="runAI()">START SIGNAL</button>
+            <button class="main-btn" onclick="run()">GET SIGNAL</button>
         </div>
     </div>
 
     <script>
+        let selectedLang = 'bn-BD';
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+
         function speak(text) {
             window.speechSynthesis.cancel();
             const speech = new SpeechSynthesisUtterance(text);
-            speech.lang = 'bn-BD';
+            speech.lang = selectedLang;
             const voices = window.speechSynthesis.getVoices();
-            speech.voice = voices.find(v => v.name.includes('Female') || v.name.includes('Google')) || voices[0];
+            let voiceFound = voices.find(v => v.lang === selectedLang && (v.name.includes('Female') || v.name.includes('Google')));
+            speech.voice = voiceFound || voices[0];
             window.speechSynthesis.speak(speech);
         }
 
-        function handleLogin() {
-            const user = document.getElementById('username').value;
-            const tid = document.getElementById('trader-id').value;
+        function start() {
+            const u = document.getElementById('uname').value;
+            selectedLang = document.getElementById('lang-select').value;
+            recognition.lang = selectedLang;
+            
+            if(u) {
+                document.getElementById('login-screen').style.display='none';
+                document.getElementById('main-app').style.display='block';
+                speak(selectedLang === 'bn-BD' ? "স্বাগতম " + u + "। কথা বলতে এআই এর ওপর চাপ দিন।" : "Welcome. Tap AI to speak.");
+            }
+        }
 
-            if(user && tid) {
-                document.getElementById('login-screen').style.display = 'none';
-                document.getElementById('main-app').style.display = 'block';
-                
-                // ভয়েস কমান্ডে আপনার নাম যুক্ত করা হয়েছে
-                speak("হ্যালো " + user + "। সুমনস স্ট্র্যাটেজি এআই ট্রেডারে স্বাগতম। আপনার আইডি " + tid + " অ্যাক্টিভেট করা হয়েছে। শুভ ট্রেডিং!");
+        function toggleMic() {
+            try {
+                recognition.start();
+                document.getElementById('ai-sphere').classList.add('mic-on');
+                document.getElementById('mic-status').innerText = "Listening...";
+            } catch (e) { recognition.stop(); }
+        }
+
+        recognition.onresult = (event) => {
+            const result = event.results[0][0].transcript.toLowerCase();
+            document.getElementById('ai-sphere').classList.remove('mic-on');
+            document.getElementById('mic-status').innerText = "You said: " + result;
+
+            if(result.includes("market") || result.includes("মার্কেট")) {
+                document.getElementById('m-display').innerText = result;
+                speak(selectedLang === 'bn-BD' ? "মার্কেট সেট করা হয়েছে।" : "Market set successfully.");
+            } else if (result.includes("start") || result.includes("শুরু")) {
+                run();
             } else {
-                alert("তথ্য সঠিকভাবে দিন।");
+                speak(selectedLang === 'bn-BD' ? "আমি দুঃখিত, আবার বলুন।" : "Sorry, please say again.");
             }
-        }
+        };
 
-        function saveMarket() {
-            const mName = document.getElementById('market-input').value;
-            if(mName) {
-                document.getElementById('display-market').innerText = mName;
-                speak(mName + " মার্কেটটি সুমনস স্ট্র্যাটেজি সিস্টেমে সেভ করা হয়েছে।");
-            }
-        }
+        recognition.onend = () => {
+            document.getElementById('ai-sphere').classList.remove('mic-on');
+            document.getElementById('mic-status').innerText = "Tap AI to Speak";
+        };
 
-        function runAI() {
-            const time = document.getElementById('timer-select').value;
-            speak("সুমনস স্ট্র্যাটেজি এআই এখন এনালাইসিস করছে। " + time + " মিনিট অপেক্ষা করুন।");
+        function run() {
+            speak(selectedLang === 'bn-BD' ? "সুমনস স্ট্র্যাটেজি এআই এখন এনালাইসিস করছে।" : "Analyzing now.");
         }
-
-        window.speechSynthesis.onvoiceschanged = () => {};
     </script>
 </body>
 </html>
